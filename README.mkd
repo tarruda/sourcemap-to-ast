@@ -1,0 +1,14 @@
+# sourcemap-to-ast
+
+> Updates a mozilla AST(produced by acorn/esprima) with location info from a source map
+
+## Installation
+
+```sh
+npm install --save sourcemap-to-ast
+```
+
+## Usage
+
+```js
+```
