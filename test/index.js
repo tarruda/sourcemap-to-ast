@@ -12,7 +12,6 @@ run({
     'test': function() {
       var compiled = coffee.compile('x =\n 1', {sourceMap: true});
       var ast = acorn.parse(compiled.js, {locations: true});
-      var map = compiled.v3SourceMap;
 
       expect(compiled.js).to.eql(
         '(function() {\n' +
@@ -30,7 +29,7 @@ run({
       expect(assignment.loc.start).to.eql({line: 4, column: 2});
       expect(assignment.loc.end).to.eql({line: 4, column: 7});
 
-      sourceMapToAst(ast, map);
+      sourceMapToAst(ast, compiled.v3SourceMap);
 
       expect(assignment.loc.start).to.eql({line: 1, column: 0});
       expect(assignment.loc.end).to.eql({line: 2, column: 1});
