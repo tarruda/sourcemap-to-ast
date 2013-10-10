@@ -31,4 +31,6 @@ module.exports = function sourceMapToAst(ast, map) {
       };
     }
   });
+
+  return ast;
 };
