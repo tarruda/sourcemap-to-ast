@@ -2,20 +2,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    exec_jshint: {
+    jshint: {
       all: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js']
     },
 
-    mocha_debug: {
+    mochaTest: {
       options: {
-        reporter: 'dot',
-        check: ['src/**/*.js', 'test/**/*.js']
+        reporter: 'spec',
+        ui: 'tdd'
       },
-      nodejs: {
-        options: {
-          src: ['src/**/*.js', 'test/**/*.js']
-        }
-      }
+      nodejs: ['src/**/*.js', 'test/**/*.js']
     },
 
     watch: {
@@ -30,12 +26,12 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-exec-jshint');
-  grunt.loadNpmTasks('grunt-mocha-debug');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-newer');
   grunt.loadNpmTasks('grunt-release');
 
-  grunt.registerTask('test', ['newer:exec_jshint', 'mocha_debug']);
-  grunt.registerTask('publish', ['mocha_debug', 'release']);
+  grunt.registerTask('test', ['newer:jshint', 'mochaTest']);
+  grunt.registerTask('publish', ['mochaTest', 'release']);
   grunt.registerTask('default', ['test', 'watch']);
 };
