@@ -1,7 +1,7 @@
 {
   "name": "sourcemap-to-ast",
   "description": "Updates a mozilla AST(produced by acorn/esprima) with location info from a source map",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "homepage": "https://github.com/tarruda/sourcemap-to-ast",
   "author": {
     "name": "Thiago de Arruda",
