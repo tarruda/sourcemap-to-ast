@@ -28,5 +28,5 @@ test('test', function () {
   sourceMapToAst(ast, compiled.v3SourceMap);
 
   expect(assignment.loc.start).to.eql({line: 1, column: 0});
-  expect(assignment.loc.end).to.eql({line: 2, column: 1});
+  expect(assignment.right.loc.start).to.eql({line: 2, column: 1});
 });

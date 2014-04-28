@@ -1,7 +1,7 @@
 {
   "name": "sourcemap-to-ast",
   "description": "Updates a mozilla AST(produced by acorn/esprima) with location info from a source map",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/tarruda/sourcemap-to-ast",
   "author": {
     "name": "Thiago de Arruda",
@@ -33,7 +33,7 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-release": "~0.7.0",
     "acorn": "~0.5.0",
-    "coffee-script": "1.6.3"
+    "coffee-script": "1.7.1"
   },
   "engines": {
     "node": ">= 0.8.0"
