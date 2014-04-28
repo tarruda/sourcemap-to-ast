@@ -10,11 +10,16 @@ module.exports = function sourceMapToAst(ast, map) {
       if (!(node.type && node.loc)) return;
 
       var origStart = map.originalPositionFor(node.loc.start);
-      var origEnd = map.originalPositionFor(node.loc.end);
 
-      if (!(origStart.line && origEnd.line)) {
+      if (!origStart.line) {
         delete node.loc;
         return;
+      }
+
+      var origEnd = map.originalPositionFor(node.loc.end);
+
+      if (origEnd.line && ((origEnd.line < origStart.line) || (origEnd.column < origStart.column))) {
+        origEnd.line = null;
       }
 
       node.loc = {
@@ -22,7 +27,7 @@ module.exports = function sourceMapToAst(ast, map) {
           line: origStart.line,
           column: origStart.column
         },
-        end: {
+        end: origEnd.line && {
           line: origEnd.line,
           column: origEnd.column
         },
