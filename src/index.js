@@ -1,13 +1,12 @@
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
 var traverse = require('estraverse').traverse;
 
-
 module.exports = function sourceMapToAst(ast, map) {
-  map = new SourceMapConsumer(map);
+  map = new SourceMapConsumer(typeof map === 'string' ? JSON.parse(map) : map);
 
   traverse(ast, {
     enter: function(node) {
-      if (!(node.type && node.loc)) return;
+      if (!node.loc) return;
 
       var origStart = map.originalPositionFor(node.loc.start);
 
@@ -16,23 +15,12 @@ module.exports = function sourceMapToAst(ast, map) {
         return;
       }
 
-      var origEnd = map.originalPositionFor(node.loc.end);
-
-      if (origEnd.line && ((origEnd.line < origStart.line) || (origEnd.column < origStart.column))) {
-        origEnd.line = null;
-      }
-
       node.loc = {
         start: {
           line: origStart.line,
           column: origStart.column
         },
-        end: origEnd.line && {
-          line: origEnd.line,
-          column: origEnd.column
-        },
-        source: origStart.source,
-        name: origStart.name
+        source: origStart.source
       };
     }
   });

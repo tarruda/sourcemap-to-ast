@@ -23,7 +23,6 @@ test('test', function () {
   var assignment = funcBody[1].expression;
 
   expect(assignment.loc.start).to.eql({line: 4, column: 2});
-  expect(assignment.loc.end).to.eql({line: 4, column: 7});
 
   sourceMapToAst(ast, compiled.v3SourceMap);
 
