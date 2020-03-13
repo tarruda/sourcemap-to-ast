@@ -32,7 +32,7 @@
     "grunt-newer": "~0.7.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-release": "~0.7.0",
-    "acorn": "~0.5.0",
+    "acorn": "~7.1.1",
     "coffee-script": "1.7.1"
   },
   "engines": {
